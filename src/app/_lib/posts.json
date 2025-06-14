@@ -1,0 +1,107 @@
+[
+  {
+    "id": 1,
+    "image": "/social.jpg",
+    "topic": "Technology",
+    "title": "The Rise of Artificial Intelligence",
+    "content": "AI is transforming industries across the globe with advanced algorithms and automation."
+  },
+  {
+    "id": 2,
+    "image": "/space.jpg",
+    "topic": "Science",
+    "title": "Exploring the Depths of Space",
+    "content": "Space exploration is entering a new era with missions to Mars and beyond."
+  },
+  {
+    "id": 3,
+    "image": "/social.jpg",
+    "topic": "Technology",
+    "title": "5G Networks: The Future of Connectivity",
+    "content": "5G is revolutionizing mobile communication with faster data speeds and lower latency."
+  },
+  {
+    "id": 4,
+    "image": "/space.jpg",
+    "topic": "Science",
+    "title": "Discovering New Galaxies",
+    "content": "Astronomers are using advanced telescopes to discover galaxies billions of light-years away."
+  },
+  {
+    "id": 5,
+    "image": "/social.jpg",
+    "topic": "Technology",
+    "title": "Blockchain Beyond Cryptocurrency",
+    "content": "Blockchain technology is finding applications in industries like finance, healthcare, and logistics."
+  },
+  {
+    "id": 6,
+    "image": "/space.jpg",
+    "topic": "Science",
+    "title": "Life on Other Planets",
+    "content": "Scientists are investigating the possibility of life on exoplanets using advanced observation techniques."
+  },
+  {
+    "id": 7,
+    "image": "/social.jpg",
+    "topic": "Bible",
+    "title": "The Story of Creation",
+    "content": "In the beginning, God created the heavens and the earth, marking the start of everything we know."
+  },
+  {
+    "id": 8,
+    "image": "/space.jpg",
+    "topic": "Bible",
+    "title": "Moses and the Ten Commandments",
+    "content": "God gave Moses the Ten Commandments on Mount Sinai as a covenant with His people."
+  },
+  {
+    "id": 9,
+    "image": "/social.jpg",
+    "topic": "Bible",
+    "title": "The Teachings of Jesus",
+    "content": "Jesus preached love, forgiveness, and grace, transforming lives and bringing hope to many."
+  },
+  {
+    "id": 10,
+    "image": "/space.jpg",
+    "topic": "Science",
+    "title": "The Power of Black Holes",
+    "content": "Black holes are regions of spacetime where gravity is so strong that nothing can escape."
+  },
+  {
+    "id": 11,
+    "image": "/social.jpg",
+    "topic": "Technology",
+    "title": "Cybersecurity in the Modern World",
+    "content": "Protecting digital assets is more important than ever with growing cyber threats."
+  },
+  {
+    "id": 12,
+    "image": "/space.jpg",
+    "topic": "Science",
+    "title": "Climate Change and Space Observation",
+    "content": "Satellites are being used to track climate change and environmental damage from space."
+  },
+  {
+    "id": 13,
+    "image": "/social.jpg",
+    "topic": "Bible",
+    "title": "David and Goliath: Faith Over Fear",
+    "content": "David defeated Goliath with faith in God, showing that courage and belief can overcome any challenge."
+  },
+  {
+    "id": 14,
+    "image": "/space.jpg",
+    "topic": "Bible",
+    "title": "The Book of Psalms: Songs of Worship",
+    "content": "The Psalms are poetic expressions of worship, hope, lament, and trust in God."
+  },
+  {
+    "id": 15,
+    "image": "/social.jpg",
+    "topic": "Technology",
+    "title": "The Future of Quantum Computing",
+    "content": "Quantum computing promises to solve problems classical computers can't handle, revolutionizing tech fields."
+  }
+]
