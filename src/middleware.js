@@ -6,7 +6,7 @@ export async function middleware(request) {
 
   if (!token) {
     console.log("⛔ No token, redirecting...");
-    return NextResponse.redirect(new URL("/login", request.url));
+    // return NextResponse.redirect(new URL("/login", request.url));
   }
 
   try {
