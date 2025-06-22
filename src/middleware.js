@@ -1,22 +1,20 @@
 import { NextResponse } from "next/server";
-import jwt from "jsonwebtoken"; // you must bundle this properly
+import { jwtVerify } from "jose";
 
 export async function middleware(request) {
-  console.log("✅ Middleware running...");
-
   const token = request.cookies.get("jwt")?.value;
 
   if (!token) {
-    console.log("⛔ No token found");
+    console.log("⛔ No token, redirecting...");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET); // use a shared secret
-    console.log("✅ Token verified:", decoded);
+    const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+    await jwtVerify(token, secret); // No need to store decoded if not needed
     return NextResponse.next();
   } catch (err) {
-    console.log("⛔ Invalid token");
+    console.log("❌ Invalid token, redirecting...");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 }
