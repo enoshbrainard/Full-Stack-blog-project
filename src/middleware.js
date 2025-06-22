@@ -15,7 +15,7 @@ export async function middleware(request) {
     return NextResponse.next();
   } catch (err) {
     console.log("❌ Invalid token, redirecting...");
-    return NextResponse.redirect(new URL("/login", request.url));
+    // return NextResponse.redirect(new URL("/login", request.url));
   }
 }
 
