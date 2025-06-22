@@ -1,23 +1,26 @@
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken"; // you must bundle this properly
 
 export async function middleware(request) {
   console.log("✅ Middleware running...");
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/verify`, {
-    headers: {
-      cookie: request.headers.get("cookie") || "",
-    },
-    credentials: "include",
-  });
+  const token = request.cookies.get("jwt")?.value;
 
-  if (res.status === 401) {
-    console.log("⛔ Unauthorized, redirecting...");
+  if (!token) {
+    console.log("⛔ No token found");
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return NextResponse.next();
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET); // use a shared secret
+    console.log("✅ Token verified:", decoded);
+    return NextResponse.next();
+  } catch (err) {
+    console.log("⛔ Invalid token");
+    return NextResponse.redirect(new URL("/login", request.url));
+  }
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/admin"], // covers /admin and deeper routes
+  matcher: ["/admin/:path*", "/admin"],
 };
