@@ -2,9 +2,13 @@ import { NextResponse } from "next/server";
 
 export async function middleware(request) {
   const token = request.cookies.get("accesstoken")?.value;
-  console.log("➡️ Middleware running for:", request.nextUrl.pathname);
+  const pathname = request.nextUrl.pathname;
+
+  console.log("➡️ Middleware running for:", pathname);
   console.log("➡️ Token found:", token);
-   if (
+
+  // ⛔ Fix: `pathname` must be defined before this
+  if (
     pathname.startsWith("/login") ||
     pathname.startsWith("/register") ||
     pathname.startsWith("/_next") || // static files
@@ -40,3 +44,7 @@ export async function middleware(request) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 }
+
+export const config = {
+  matcher: ["/admin/:path*", "/admin"], // ✅ Apply only to protected routes
+};
