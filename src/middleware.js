@@ -4,6 +4,14 @@ export async function middleware(request) {
   const token = request.cookies.get("accesstoken")?.value;
   console.log("➡️ Middleware running for:", request.nextUrl.pathname);
   console.log("➡️ Token found:", token);
+   if (
+    pathname.startsWith("/login") ||
+    pathname.startsWith("/register") ||
+    pathname.startsWith("/_next") || // static files
+    pathname.startsWith("/favicon.ico")
+  ) {
+    return NextResponse.next();
+  }
 
   if (!token) {
     console.log("⛔ No token, redirecting to login");
