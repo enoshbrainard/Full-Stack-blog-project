@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
-
+import { useContext } from "react";
+import { Global } from "../GlobalContext";
 import { useRouter } from "next/navigation";
 import { EyeOff, Eye } from "lucide-react";
 import Link from "next/link";
@@ -8,6 +9,8 @@ import Forgetpassword from "./Forgetpassword";
 export default function LoginForm() {
   const [forgetPassword, setForgetPassword] = useState(false);
   const [showpassword, setShowPassword] = useState(false);
+
+  const { userid, setUserId, username, setUserName } = useContext(Global);
   const router = useRouter();
   const [loginForm, setLoginForm] = useState({
     email: "",
@@ -41,7 +44,14 @@ export default function LoginForm() {
         const errData = await response.json();
         throw new Error(errData.message || "Failed fetching data");
       }
-      router.push("/admin");
+      const resData = await response.json();
+      // console.log(resData);
+      console.log("user id is ", resData.user.id);
+      setUserId(resData.user.id);
+      // console.log(userid);
+      setTimeout(() => {
+        router.push("/admin");
+      }, 548);
     } catch (e) {
       setError(e.message);
     } finally {

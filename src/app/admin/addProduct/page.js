@@ -1,9 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Image from "next/image";
+import { Global } from "@/app/GlobalContext";
 
 export default function Page() {
   const [image, setImage] = useState("/upload.svg");
+  const { userid } = useContext(Global);
   const [data, setData] = useState({
     topic: "",
     title: "",
@@ -50,7 +52,7 @@ export default function Page() {
     e.preventDefault();
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/api/createposts`,
+        `${process.env.NEXT_PUBLIC_API_URL}/api/createposts?userId=${userid}`,
         {
           method: "POST",
           headers: {
@@ -60,13 +62,15 @@ export default function Page() {
         }
       );
 
-      if (!res.ok) {
-        throw new Error("Failed to submit post");
-      }
+      // if (!res.ok) {
+      //   throw new Error("Failed to submit post");
+      // }
+      if (res.ok) {
+        const result = await res.json();
 
-      const result = await res.json();
-      alert("Post added successfully!");
-      console.log(result);
+        alert("Post added successfully!");
+        console.log(result);
+      }
     } catch (e) {
       console.log("Error occurred:", e.message);
     }

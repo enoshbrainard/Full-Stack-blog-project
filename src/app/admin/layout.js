@@ -3,9 +3,36 @@ import Link from "next/link";
 import { Plus, List, Mail } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 export default function AdminLayout({ children }) {
   const Router = useRouter();
+  const [check, setCheck] = useState(true);
+
+  useEffect(() => {
+    const verify = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/verify`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
+        if (response.ok) {
+          setCheck(false);
+        } else {
+          // Not OK? Redirect to home/login
+          const data = await response.json();
+          throw new Error(data.message);
+          Router.push("/");
+        }
+      } catch (e) {
+        console.log(e.message);
+        Router.push("/");
+      }
+    };
+    verify();
+  }, [Router]);
   const handleClick = async () => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/logout`, {
       method: "GET",
@@ -15,6 +42,9 @@ export default function AdminLayout({ children }) {
       Router.push("/");
     }
   };
+  if (check) {
+    return <div>verifying</div>;
+  }
   return (
     <div className="flex h-screen bg-white text-black">
       {/* Sidebar */}
@@ -35,6 +65,13 @@ export default function AdminLayout({ children }) {
           >
             <Plus size={20} /> Add blogs
           </Link>
+          <Link
+            href="/admin/seePosts"
+            className="flex items-center gap-3 px-4 py-2 border rounded hover:bg-gray-200"
+          >
+            <Plus size={20} /> seePosts
+          </Link>
+
           {/* <Link
             href="/admin/blogs"
             className="flex items-center gap-3 px-4 py-2 border rounded hover:bg-gray-200"

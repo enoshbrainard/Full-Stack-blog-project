@@ -11,9 +11,17 @@ export default function PostList() {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_API_URL}/api/getposts`
         ); // Make sure this matches your backend route
-        const data = await res.json();
+        // const data = await res.json();
+        // const text = await res.text();
+        // console.log(text);
+        const text = await res.text(); // Use .text() temporarily to inspect
+
+        // console.log("Raw response:", text); // DEBUG LOG
+
+        const data = JSON.parse(text);
+
         console.log("Fetched posts");
-        console.log(data);
+        // console.log(data);
         setLoading(false);
         setPosts(data);
       } catch (e) {
